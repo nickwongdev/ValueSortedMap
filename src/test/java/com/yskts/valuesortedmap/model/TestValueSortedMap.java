@@ -8,11 +8,14 @@ import com.yskts.valuesortedmap.ValueSortedMap;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -55,8 +58,8 @@ public class TestValueSortedMap {
     @Before
     public void beforeTest() {
     }
-    
-    @Test
+
+	@Test
     public void testValueSortedMap() {
 		ValueSortedMap<String, Item> itemMap = new ValueSortedMap<String, Item>(new ItemComparator());
 		Random random = new Random();
@@ -123,4 +126,36 @@ public class TestValueSortedMap {
 			count++;
 		}
     }
+
+	@Test
+	public void testGetEntrySet() {
+		Random random = new Random();
+		int randIndex = 0;
+		Boolean randArray[] = new Boolean[26];
+		ValueSortedMap<String, Item> itemMap = new ValueSortedMap<String, Item>(new ItemComparator());
+
+		for(int j = 0; j < 26; j++) {
+			randArray[j] = false;
+		}
+
+		for(int i = 0; i < 26; i++) {
+			String uuid = UUID.randomUUID().toString();
+
+			while(true) {
+				randIndex = Math.abs(random.nextInt() % 26);
+				if(randArray[randIndex] == false) {
+					randArray[randIndex] = true;
+					break;
+				}
+			}
+			itemMap.put(uuid, new Item(String.valueOf(i), alphabet[randIndex]));
+		}
+
+		Set<Map.Entry<String, Item>> entrySet = itemMap.entrySet();
+		int i = 0;
+		for(Map.Entry<String, Item> entry : entrySet) {
+			Assert.assertEquals(alphabet[i], entry.getValue().getName());
+			i++;
+		}
+	}
 }

@@ -4,10 +4,9 @@
  */
 package com.yskts.valuesortedmap;
 
+
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
@@ -125,7 +124,7 @@ public class ValueSortedMap<K, V> implements Map<K, V> {
 
 	public Set<K> keySet() {
 
-		Set<K> keySet = new LinkedHashSet<K>();
+		Set<K> keySet = new QueueSet<K>();
 		for (int i = 0; i < keys.size(); i++) {
 			keySet.add(keys.get(i));
 		}
@@ -139,9 +138,9 @@ public class ValueSortedMap<K, V> implements Map<K, V> {
 
 	public Set<Map.Entry<K, V>> entrySet() {
 
-		Set<Map.Entry<K, V>> entrySet = new HashSet<Map.Entry<K, V>>();
-		for (K key : keys) {
-			entrySet.add(new Entry<K, V>(key, values.get(keys.indexOf(key))));
+		Set<Map.Entry<K, V>> entrySet = new QueueSet<Map.Entry<K, V>>();
+		for(int i = 0; i < keys.size(); i++) {
+			entrySet.add(new Entry<K, V>(keys.get(i), values.get(keys.indexOf(keys.get(i)))));
 		}
 		return entrySet;
 	}
