@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blizzard.valuesortedmap.model;
+package com.yskts.valuesortedmap.model;
 
-import com.blizzard.valuesortedmap.ValueSortedMap;
+import com.yskts.valuesortedmap.ValueSortedMap;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -12,9 +12,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 import java.util.UUID;
 
 /**
